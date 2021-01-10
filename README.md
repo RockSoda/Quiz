@@ -79,7 +79,7 @@
    attempted:[{
       quizName: String
       completion: Boolean
-      Score: Number
+      score: Number
    }]
 }
  ```
