@@ -47,6 +47,8 @@ router.get('/', async (req, res) => {
                     }
                 }
             }
+
+            return res.status(404).json({ message: 'Cannot find quiz' })
         }
     }catch(err){
         res.status(500).json({ message: err.message })
@@ -158,11 +160,17 @@ router.delete('/:id', getUser, async (req, res) => {
         }else{
             //Delete a quiz by id
             let quizzes = []
+            let flag = false
             for(let i = 0; i < res.user.quiz.length; i++){
                 if((res.user.quiz[i]._id+"").localeCompare(req.query.query) !== 0){
                     quizzes.push(res.user.quiz[i])
-                }
+                }else{
+                    flag = true
+                } 
             }
+
+            if(!flag) return res.status(404).json({ message: 'Cannot find quiz' })
+
             res.user.quiz = quizzes
             const userAfterDeletion = await res.user.save()
             res.json(userAfterDeletion)
