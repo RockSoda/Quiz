@@ -92,19 +92,19 @@
   //Returns all users
   
   GET http://url_to_server:3000/users?query=quiz 
-  //Returns all quizzes
+  //Return all quizzes
   
   GET http://url_to_server:3000/users?query=quiz_id 
-  //Returns a quiz by _id
+  //Return a quiz by _id
   
   GET http://url_to_server:3000/users/user_id 
-  //Returns a user by _id
+  //Return a user by _id
   
   GET http://url_to_server:3000/users/user_id?query=quiz 
-  //Returns all quizzes under the user_id
+  //Return all quizzes under the user_id
   
   GET http://url_to_server:3000/users/user_id?query=attempted 
-  //Returns all attempts under the user_id
+  //Return all attempts under the user_id
   
   POST http://url_to_server:3000/users 
   //Create a user regarding the data structure(Content-Type: application/json)
