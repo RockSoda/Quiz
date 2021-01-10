@@ -231,7 +231,7 @@ function deleteQuiz(quizId){
 }
 
 //Triggers when the 'go to add' button is clicked on page myQuiz.html
-//Assert UI elements for user inputs to add a new question set
+//Insert UI elements for user inputs to add a new question set
 function addQuiz(){
     document.getElementById("table").style.visibility="visible"
 
