@@ -122,6 +122,6 @@
   //Delete a user by _id
   
   DELETE http://url_to_server:3000/users/user_id?query=quiz_id 
-  //Delete a quiz by _id
+  //Delete a quiz under user_id by quiz_id
   ```
  
