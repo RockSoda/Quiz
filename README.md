@@ -87,17 +87,41 @@
   ## APIs
   ```
   //url_to_server is the path to server, for example localhost
-  GET http://url_to_server:3000/users //Returns all users
-  GET http://url_to_server:3000/users?query=quiz //Returns all quizzes
-  GET http://url_to_server:3000/users?query=quiz_id //Returns a quiz by _id
-  GET http://url_to_server:3000/users/user_id //Returns a user by _id
-  GET http://url_to_server:3000/users/user_id?query=quiz //Returns all quizzes under the user_id
-  GET http://url_to_server:3000/users/user_id?query=attempted //Returns all attempts under the user_id
-  POST http://url_to_server:3000/users //Create a user regarding the data structure(Content-Type: application/json)
-  PATCH http://url_to_server:3000/users/user_id //Update a user regarding the data structure(Content-Type: application/json)
-  PATCH http://url_to_server:3000/users/user_id?query=quiz //Append a quiz regarding the data structure(Content-Type: application/json)
-  PATCH http://url_to_server:3000/users/user_id?query=attempted //Append an attempt regarding the data structure(Content-Type: application/json)
-  DELETE http://url_to_server:3000/users/user_id //Delete a user by _id
-  DELETE http://url_to_server:3000/users/user_id?query=quiz_id //Delete a quiz by _id
+  
+  GET http://url_to_server:3000/users 
+  //Returns all users
+  
+  GET http://url_to_server:3000/users?query=quiz 
+  //Returns all quizzes
+  
+  GET http://url_to_server:3000/users?query=quiz_id 
+  //Returns a quiz by _id
+  
+  GET http://url_to_server:3000/users/user_id 
+  //Returns a user by _id
+  
+  GET http://url_to_server:3000/users/user_id?query=quiz 
+  //Returns all quizzes under the user_id
+  
+  GET http://url_to_server:3000/users/user_id?query=attempted 
+  //Returns all attempts under the user_id
+  
+  POST http://url_to_server:3000/users 
+  //Create a user regarding the data structure(Content-Type: application/json)
+  
+  PATCH http://url_to_server:3000/users/user_id 
+  //Update a user regarding the data structure(Content-Type: application/json)
+  
+  PATCH http://url_to_server:3000/users/user_id?query=quiz 
+  //Append a quiz regarding the data structure(Content-Type: application/json)
+  
+  PATCH http://url_to_server:3000/users/user_id?query=attempted 
+  //Append an attempt regarding the data structure(Content-Type: application/json)
+  
+  DELETE http://url_to_server:3000/users/user_id 
+  //Delete a user by _id
+  
+  DELETE http://url_to_server:3000/users/user_id?query=quiz_id 
+  //Delete a quiz by _id
   ```
  
