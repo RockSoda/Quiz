@@ -139,6 +139,10 @@ router.patch('/:id', getUser, async (req, res) => {
     //Appending attempts
     if(req.query.query.localeCompare("attempted") === 0){
         res.user.attempted = res.user.attempted.concat(req.body.attempted)
+    }else
+    
+    {
+        return res.status(400).json({ message: "Invalid query" })
     }
 
     //Update to db
