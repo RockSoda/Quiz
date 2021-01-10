@@ -86,7 +86,7 @@
  
   ## APIs
   ```
-  //url_to_server is the path to server, for example localhost
+  //url_to_server is the path to server, if running locally use localhost
   
   GET http://url_to_server:3000/users 
   //Returns all users
