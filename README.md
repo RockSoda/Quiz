@@ -89,7 +89,7 @@
   //url_to_server is the path to server, if running locally use localhost
   
   GET http://url_to_server:3000/users 
-  //Returns all users
+  //Return all users
   
   GET http://url_to_server:3000/users?query=quiz 
   //Return all quizzes
