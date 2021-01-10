@@ -169,7 +169,7 @@ router.delete('/:id', getUser, async (req, res) => {
                 } 
             }
 
-            if(!flag) return res.status(404).json({ message: 'Cannot find quiz' })
+            if(!flag) return res.status(404).json({ message: 'Cannot find quiz under current user' })
 
             res.user.quiz = quizzes
             const userAfterDeletion = await res.user.save()
