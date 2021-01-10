@@ -110,13 +110,13 @@
   //Create a user regarding the data structure(Content-Type: application/json)
   
   PATCH http://url_to_server:3000/users/user_id 
-  //Update a user regarding the data structure(Content-Type: application/json)
+  //Update a user by _id regarding the data structure(Content-Type: application/json)
   
   PATCH http://url_to_server:3000/users/user_id?query=quiz 
-  //Append a quiz regarding the data structure(Content-Type: application/json)
+  //Append a quiz under user_id regarding the data structure(Content-Type: application/json)
   
   PATCH http://url_to_server:3000/users/user_id?query=attempted 
-  //Append an attempt regarding the data structure(Content-Type: application/json)
+  //Append an attempt under user_id regarding the data structure(Content-Type: application/json)
   
   DELETE http://url_to_server:3000/users/user_id 
   //Delete a user by _id
