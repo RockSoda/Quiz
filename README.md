@@ -118,6 +118,9 @@
   PATCH http://url_to_server:3000/users/user_id?query=attempted 
   //Append an attempt under user_id regarding the data structure(Content-Type: application/json)
   
+  PATCH http://url_to_server:3000/users/user_id?query=quiz_id
+  //Update a quiz by quiz_id under user_id regarding the data structure(Content-Type: application/json)
+  
   DELETE http://url_to_server:3000/users/user_id 
   //Delete a user by _id
   
