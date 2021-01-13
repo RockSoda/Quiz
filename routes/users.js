@@ -128,7 +128,7 @@ router.patch('/:id', getUser, async (req, res) => {
 
     {
         //Update question set by questions_id
-        isvalidQuestionSet(req.body)
+        isValidQuestionSet(req.body)
         let flag = false
 
         for(let i = 0; i < res.user.quiz.length; i++){
@@ -192,7 +192,7 @@ function isValidQuiz(req){
     }
 }
 
-function isvalidQuestionSet(quiz){
+function isValidQuestionSet(quiz){
     //Checking if the quiz name is empty
     if(quiz.name == null || (quiz.name+"").localeCompare("") === 0)
         return res.status(422).json({ message: "Quiz name cannot be empty!" })
