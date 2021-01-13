@@ -115,34 +115,32 @@ router.patch('/:id', getUser, async (req, res) => {
 
     //Appending quiz
     if(req.query.query.localeCompare("quiz") === 0){
-        //Checking if the quiz is empty
-        if(req.body.quiz.length === 0) return res.status(422).json({ message: "Quiz cannot be empty!" })
-        for(let i = 0; i < req.body.quiz.length; i++){
-            //Checking if the quiz name is empty
-            if(req.body.quiz[i].name == null || (req.body.quiz[i].name+"").localeCompare("") === 0)
-                return res.status(422).json({ message: "Quiz name cannot be empty!" })
-            //Checking if the quiz contains 0 question
-            if(req.body.quiz[i].questions == null || req.body.quiz[i].questions.length === 0)
-                return res.status(422).json({ message: "Question set cannot be empty!" })
-            for(let j = 0; j < req.body.quiz[i].questions.length; j++){
-                //Checking if any of the question in the quiz is empty
-                if(req.body.quiz[i].questions[j].question == null || (req.body.quiz[i].questions[j].question+"").localeCompare("") === 0)
-                    return res.status(422).json({ message: "Question cannot be empty!" })
-                //Checking if any of the answer in the quiz is empty
-                if(req.body.quiz[i].questions[j].answer == null || (req.body.quiz[i].questions[j].answer+"").localeCompare("") === 0)
-                    return res.status(422).json({ message: "Answer cannot be empty!" })
-            }
-        }
+        isValidQuiz(req)
         res.user.quiz = res.user.quiz.concat(req.body.quiz)
     }else
 
+
+    
     //Appending attempts
     if(req.query.query.localeCompare("attempted") === 0){
         res.user.attempted = res.user.attempted.concat(req.body.attempted)
     }else
-    
+
     {
-        return res.status(400).json({ message: "Invalid query" })
+        //Update question set by questions_id
+        isvalidQuestionSet(req.body)
+        let flag = false
+
+        for(let i = 0; i < res.user.quiz.length; i++){
+            if((res.user.quiz[i]._id+"").localeCompare(req.query.query+"") === 0){
+                res.user.quiz[i] = req.body
+                flag = true
+                break
+            }
+        }
+
+        if(!flag) return res.status(404).json({ message: "Cannot find quiz!" })
+
     }
 
     //Update to db
@@ -185,6 +183,31 @@ router.delete('/:id', getUser, async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 })
+
+function isValidQuiz(req){
+    //Checking if the quiz is empty
+    if(req.body.quiz.length === 0) return res.status(422).json({ message: "Quiz cannot be empty!" })
+    for(let i = 0; i < req.body.quiz.length; i++){
+        isvalidQuestionSet(req.body.quiz[i])
+    }
+}
+
+function isvalidQuestionSet(quiz){
+    //Checking if the quiz name is empty
+    if(quiz.name == null || (quiz.name+"").localeCompare("") === 0)
+        return res.status(422).json({ message: "Quiz name cannot be empty!" })
+    //Checking if the quiz contains 0 question
+    if(quiz.questions == null || quiz.questions.length === 0)
+        return res.status(422).json({ message: "Question set cannot be empty!" })
+    for(let j = 0; j < quiz.questions.length; j++){
+    //Checking if any of the question in the quiz is empty
+        if(quiz.questions[j].question == null || (quiz.questions[j].question+"").localeCompare("") === 0)
+            return res.status(422).json({ message: "Question cannot be empty!" })
+    //Checking if any of the answer in the quiz is empty
+        if(quiz.questions[j].answer == null || (quiz.questions[j].answer+"").localeCompare("") === 0)
+            return res.status(422).json({ message: "Answer cannot be empty!" })
+    }
+}
 
 // Middle-ware
 async function getUser(req, res, next){
