@@ -68,63 +68,77 @@
  ## Database Structure
  ```
  user: {
-   name: String
-   quiz:[{
-      name: String
-      questions:[{
-         question: String
-         answer: String
-      }]
+  name: String,
+  accessToken: String (jwt)
+ }
+ 
+ stat: {
+  userId: String,
+  userName: String,
+  quizId: String,
+  quizName: String,
+  completion: String,
+  score: Number
+ }
+ 
+ quiz: {
+  name: String
+  questions:[{
+   question: String
+   answer: String
    }]
-   attempted:[{
-      quizName: String
-      completion: Boolean
-      score: Number
-   }]
-}
+ }
  ```
  
   ## APIs
   ```
   //url_to_server is the path to server, if running locally use localhost
+  //Content-Type: application/json
   
   GET http://url_to_server:3000/users 
   //Return all users
   
-  GET http://url_to_server:3000/users?query=quiz 
-  //Return all quizzes
-  
-  GET http://url_to_server:3000/users?query=quiz_id 
-  //Return a quiz by _id
-  
   GET http://url_to_server:3000/users/user_id 
   //Return a user by _id
   
-  GET http://url_to_server:3000/users/user_id?query=quiz 
-  //Return all quizzes under the user_id
-  
-  GET http://url_to_server:3000/users/user_id?query=attempted 
-  //Return all attempts under the user_id
-  
   POST http://url_to_server:3000/users 
-  //Create a user regarding the data structure(Content-Type: application/json)
+  //Create a user
+  //The access token will be generated
   
   PATCH http://url_to_server:3000/users/user_id 
-  //Update a user by _id regarding the data structure(Content-Type: application/json)
-  
-  PATCH http://url_to_server:3000/users/user_id?query=quiz 
-  //Append a quiz under user_id regarding the data structure(Content-Type: application/json)
-  
-  PATCH http://url_to_server:3000/users/user_id?query=attempted 
-  //Append an attempt under user_id regarding the data structure(Content-Type: application/json)
-  
-  PATCH http://url_to_server:3000/users/user_id?query=quiz_id
-  //Update a quiz by quiz_id under user_id regarding the data structure(Content-Type: application/json)
+  //Update a user by _id
   
   DELETE http://url_to_server:3000/users/user_id 
   //Delete a user by _id
   
-  DELETE http://url_to_server:3000/users/user_id?query=quiz_id 
-  //Delete a quiz under user_id by quiz_id
+  GET http://url_to_server:3000/quizzes 
+  //Return all quizzes
+  
+  GET http://url_to_server:3000/quizzes//myQuizzes
+  Authorization: Bearer TOKEN
+  //Return all quizzes under a user
+  
+  POST http://url_to_server:3000/quizzes
+  Authorization: Bearer TOKEN
+  //Create a quiz
+  
+  PATCH http://url_to_server:3000/quizzes/quiz_id
+  Authorization: Bearer TOKEN
+  //Update a quiz
+  
+  DELETE http://url_to_server:3000/quizzes/quiz_id
+  Authorization: Bearer TOKEN
+  //Delete a quiz
+  
+  GET http://url_to_server:3000/stats
+  //Return all attempts
+  
+  GET http://url_to_server:3000/stats/myStats
+  Authorization: Bearer TOKEN
+  //Return all attempts under a user
+  
+  POST http://url_to_server:3000/stats
+  Authorization: Bearer TOKEN
+  //Create an attempt
   ```
  
